@@ -93,12 +93,12 @@ class PlexonIO(BaseIO):
 
         # metadatas
         seg = Segment()
-        seg.rec_datetime = datetime.datetime(global_header['Year'],
-                                             global_header['Month'],
-                                             global_header['Day'],
-                                             global_header['Hour'],
-                                             global_header['Minute'],
-                                             global_header['Second'])
+        # seg.rec_datetime = datetime.datetime(global_header['Year'],
+        #                                      global_header['Month'],
+        #                                      global_header['Day'],
+        #                                      global_header['Hour'],
+        #                                      global_header['Minute'],
+        #                                      global_header['Second'])
         seg.file_origin = os.path.basename(self.filename)
         seg.annotate(plexon_version=global_header['Version'])
 
@@ -209,8 +209,8 @@ class PlexonIO(BaseIO):
                     'times': np.zeros(nb, dtype='f'),
                     'labels': np.zeros(nb, dtype='S4')
                 }
-                eventpositions[chan]=0 
-                
+                eventpositions[chan]=0
+
             fid.seek(start)
             while fid.tell() != -1:
                 dataBlockHeader = HeaderReader(fid, DataBlockHeader).read_f(
@@ -329,7 +329,7 @@ class PlexonIO(BaseIO):
                     waveforms = None
             sptr = SpikeTrain(
                 times,
-                units='s', 
+                units='s',
                 t_stop=t_stop*pq.s,
                 waveforms=waveforms
             )
